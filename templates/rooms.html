@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyRise Hotel - Rooms</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f5fa;
+        }
+
+         /* Header Styling */
+         header {
+            background-color: #7e5aa0;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover {
+            background-color: #6b4892;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #7e5aa0;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .room-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .room-card {
+            width: 30%;
+            background-color: #f0f0f0;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .room-card:hover {
+            transform: scale(1.05);
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .room-card .content {
+            padding: 15px;
+        }
+
+        .room-card h3 {
+            color: #7e5aa0;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .room-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .button-book {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #7e5aa0;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .button-book:hover {
+            background-color: #6b4892;
+        }
+
+        .footer {
+            background-color: #7e5aa0;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>SkyRise Hotel</h2>
+        <nav>
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="rooms.html"><i class="fas fa-bed"></i> Rooms</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Our Rooms</h1>
+
+        <div class="room-cards">
+            <!-- Room 1 -->
+            <div class="room-card">
+                <img src="/images/delux.jpg" alt="Deluxe Room">
+                <div class="content">
+                    <h3>Deluxe Room</h3>
+                    <p>
+                        A spacious room with a king-size bed, modern amenities, and a stunning view of the city. Ideal for couples or business travelers looking for luxury and comfort.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Room 2 -->
+            <div class="room-card">
+                <img src="/images/executive.jpg" alt="Executive Suite">
+                <div class="content">
+                    <h3>Executive Suite</h3>
+                    <p>
+                        A luxurious suite with separate living and sleeping areas. Perfect for those who want a bit more space and style during their stay.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="room-card">
+                <img src="/images/penthouse.jpg" alt="Penthouse Suite">
+                <div class="content">
+                    <h3>Penthouse Suite</h3>
+                    <p>
+                        The epitome of luxury, this top-floor suite offers panoramic views, a private balcony, and first-class amenities. Perfect for those looking to indulge in extravagance.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="room-cards">
+            <!-- Room 4 -->
+            <div class="room-card">
+                <img src="/images/standard.jpg" alt="Standard Room">
+                <div class="content">
+                    <h3>Standard Room</h3>
+                    <p>
+                        A cozy room with all the essentials for a pleasant stay. Ideal for solo travelers or those on a budget without compromising comfort.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Room 5 -->
+            <div class="room-card">
+                <img src="/images/family.jpg" alt="Family Room">
+                <div class="content">
+                    <h3>Family Room</h3>
+                    <p>
+                        A spacious room designed for families. Includes two queen-size beds, plenty of space for kids, and family-friendly amenities to ensure a comfortable stay.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Room 6 -->
+            <div class="room-card">
+                <img src="/images/couple.jpg" alt="Honeymoon Suite">
+                <div class="content">
+                    <h3>Couple Suite</h3>
+                    <p>
+                        A suite designed for couples celebrating special occasions. Includes a private hot tub, rose petals, and a breathtaking view.
+                    </p>
+                    <a href="book.html" class="button-book">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>SkyRise Hotel &copy; 2024. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Room - SkyRise Hotel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: rgba(134, 92, 185, 0.95);
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        /* Form Container Styling */
+        .form-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #865cb9;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(134, 92, 185, 0.1);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .current-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #e1e1e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .submit-button,
+        .cancel-button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-button {
+            background: #865cb9;
+            color: white;
+        }
+
+        .cancel-button {
+            background: #dc3545;
+            color: white;
+        }
+
+        .submit-button:hover,
+        .cancel-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .success-message {
+            color: #28a745;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 8px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .form-container {
+                margin: 100px 20px 40px;
+                padding: 30px 20px;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">SkyRise Hotel</a>
+            <nav>
+                <a href="/admin_bookings"><i class="fas fa-calendar-check"></i> Bookings</a>
+                <a href="/adminviewrooms"><i class="fas fa-door-open"></i> Room Details</a>
+                <a href="/adminadddetails"><i class="fas fa-plus-circle"></i> Add Room</a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Update Room</h1>
+            <p>Modify room details and information</p>
+        </div>
+
+        <form action="/admin_update_room/{{ room._id }}" method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="room_number"><i class="fas fa-door-closed"></i> Room Number</label>
+                    <input type="text" id="room_number" name="room_number" value="{{ room.room_number }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="room_type"><i class="fas fa-bed"></i> Room Type</label>
+                    <select id="room_type" name="room_type" required>
+                        <option value="Single" {% if room.room_type == 'Single' %}selected{% endif %}>Single Room</option>
+                        <option value="Double" {% if room.room_type == 'Double' %}selected{% endif %}>Double Room</option>
+                        <option value="Suite" {% if room.room_type == 'Suite' %}selected{% endif %}>Suite</option>
+                        <option value="Deluxe" {% if room.room_type == 'Deluxe' %}selected{% endif %}>Deluxe Room</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="price"><i class="fas fa-tag"></i> Price per Night</label>
+                    <input type="number" id="price" name="price" value="{{ room.price }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacity"><i class="fas fa-users"></i> Room Capacity</label>
+                    <input type="number" id="capacity" name="capacity" value="{{ room.capacity }}" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label><i class="fas fa-image"></i> Current Image</label>
+                    <img src="{{ url_for('static', filename='uploads/' + room.room_image) }}" alt="Current room image" class="current-image">
+                    
+                    <label for="room_image">Update Room Image</label>
+                    <input type="file" id="room_image" name="room_image" accept="image/*">
+                    <div class="image-preview" id="imagePreview">
+                        <p>New image preview will appear here</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <a href="/adminviewrooms" class="cancel-button">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+            </div>
+
+            {% if message %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+
+    <script>
+        // Image preview functionality
+        const imageInput = document.getElementById('room_image');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = `<img src="${e.target.result}" alt="Room preview">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

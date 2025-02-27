@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings - SkyRise Hotel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(134, 92, 185, 0.95);
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 20px;
+        }
+
+        .bookings-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bookings-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #865cb9;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(134, 92, 185, 0.1);
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .bookings-table {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        th {
+            background-color: #865cb9;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background-color: rgba(134, 92, 185, 0.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+
+        .action-link {
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .accept-link {
+            background-color: #28a745;
+        }
+
+        .accept-link:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .reject-link {
+            background-color: #dc3545;
+        }
+
+        .reject-link:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #ffd700;
+            color: #000;
+        }
+
+        .status-accepted {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .status-rejected {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                padding: 20px;
+            }
+
+            th, td {
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .bookings-table {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">SkyRise Hotel</a>
+            <nav>
+                <a href="/admin_bookings"><i class="fas fa-calendar-check"></i> Bookings</a>
+                <a href="/adminviewrooms"><i class="fas fa-door-open"></i> Room Details</a>
+                <a href="/adminadddetails"><i class="fas fa-plus-circle"></i> Add Room</a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="bookings-header">
+            <h1>Manage Bookings</h1>
+            <div class="search-filters">
+                <input type="text" class="search-input" placeholder="Search by guest name or room number...">
+                <select class="filter-select">
+                    <option value="">All Statuses</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">Sort By</option>
+                    <option value="date">Booking Date</option>
+                    <option value="room">Room Number</option>
+                    <option value="guest">Guest Name</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="bookings-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Guest Name</th>
+                        <th>Room No.</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Days</th>
+                        <th>Total Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking._id }}</td>
+                        <td>{{ booking.username }}</td>
+                        <td>{{ booking.room_number }}</td>
+                        <td>{{ booking.start_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ booking.end_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ booking.days }}</td>
+                        <td>₹{{ booking.total_price }}</td>
+                        <td class="action-buttons">
+                            {% if booking.status == 'pending' %}
+                                <a href="/update_booking_status/{{ booking._id }}/accepted" class="action-link accept-link">
+                                    <i class="fas fa-check"></i> Accept
+                                </a>
+                                <a href="/update_booking_status/{{ booking._id }}/rejected" class="action-link reject-link">
+                                    <i class="fas fa-times"></i> Reject
+                                </a>
+                            {% else %}
+                                <span class="status-badge status-{{ booking.status.lower() }}">
+                                    {{ booking.status }}
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Status filter
+        document.querySelector('.filter-select').addEventListener('change', function(e) {
+            const status = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const rowStatus = row.querySelector('.status-badge').textContent.toLowerCase().trim();
+                row.style.display = !status || rowStatus === status ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
