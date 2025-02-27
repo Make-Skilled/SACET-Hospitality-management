@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 
 
 api = Flask(__name__)
-api.secret_key = 'giri'
+api.secret_key = 'qwertyuio'
 
 # MongoDB setup
 cluster = MongoClient("mongodb+srv://kr4785543:1234567890@cluster0.220yz.mongodb.net/")
@@ -109,7 +109,7 @@ def add_room():
         room_type = request.form.get('room_type')
         capacity = request.form.get('capacity')
         price = request.form.get('price')
-        availability = request.form.get('availability')
+        # availability = request.form.get('availability')
         
         # Handle the file upload
         if 'room_image' not in request.files:
@@ -136,7 +136,6 @@ def add_room():
             "room_type": room_type,
             "capacity": int(capacity),
             "price": float(price),
-            "availability": availability,
             "room_image": room_image
         }
 

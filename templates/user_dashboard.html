@@ -272,12 +272,12 @@
             </div>
             <div class="stat-card">
                 <i class="fas fa-check-circle"></i>
-                <h3>{{ bookings|selectattr('status', 'equalto', 'Accepted')|list|length }}</h3>
+                <h3>{{ bookings|selectattr('status', 'equalto', 'accepted')|list|length }}</h3>
                 <p>Confirmed Bookings</p>
             </div>
             <div class="stat-card">
                 <i class="fas fa-clock"></i>
-                <h3>{{ bookings|selectattr('status', 'equalto', 'Pending')|list|length }}</h3>
+                <h3>{{ bookings|selectattr('status', 'equalto', 'pending')|list|length }}</h3>
                 <p>Pending Bookings</p>
             </div>
         </div>
